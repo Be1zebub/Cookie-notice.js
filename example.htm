@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="author" content="Beelzebub"/>
+	<meta name="description" content="Cookie-notice.js DEMO">
+</head>
+<body>
+    <script type="text/javascript" src="cookie_notice.js"></script>
+    <script type="text/javascript">
+		cookieNotice({
+			text: {
+				we_use_cookies: "Мы используем файлы cookie.",
+				more_details: "Подробнее",
+				accept: "Принять"
+			},
+			more_details_url: "https://ec.europa.eu/info/cookies_en",
+			colors: {
+				background: rgb(6, 6, 6),
+				text_we_use_cookies: rgb(190, 185, 175),
+				text_more_details: rgb(240, 240, 235),
+				text_accept: rgb(240, 240, 235),
+				accept_button: rgb(30, 30, 30),
+				accept_button_hovered: rgb(210, 10, 10),
+			},
+			parent_selector: "body"
+		});
+		</script>
+	</body>
+</head>
+</html>
