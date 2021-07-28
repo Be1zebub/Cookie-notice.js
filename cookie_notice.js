@@ -8,14 +8,14 @@ var rgb = function(r, g, b) {
 NodeList.prototype.forEach = HTMLCollection.prototype.forEach = Array.prototype.forEach;
 
 Object.prototype.forEach = function(func, context) {
-    let value;
-    context = context || this;
-    for (key in this) {
-        if (this.hasOwnProperty(key)) {
-            value = this[key];
-            func.call(context, key, value);
-        }
-    }    
+	let value;
+	context = context || this;
+	for (key in this) {
+		if (this.hasOwnProperty(key)) {
+			value = this[key];
+			func.call(context, key, value);
+		}
+	}    
 };
 
 HTMLElement.prototype.Add = function(tag, eclass){ 
@@ -28,29 +28,29 @@ HTMLElement.prototype.Add = function(tag, eclass){
 }
 
 function isObject(val) {
-    return val instanceof Object; 
+	return val instanceof Object; 
 }
 
 function setCookie(name,value,days) {
-    let expires = "";
-    if (days) {
-        let date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    } else {
-        expires = "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+	let expires = "";
+	if (days) {
+		let date = new Date();
+		date.setTime(date.getTime() + (days*24*60*60*1000));
+		expires = "; expires=" + date.toUTCString();
+	} else {
+		expires = "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+	}
+	document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 }
 function getCookie(name) {
-    let nameEQ = name + "=";
-    let ca = document.cookie.split(';');
-    for(let i=0;i < ca.length;i++) {
-        let c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-    }
-    return null;
+	let nameEQ = name + "=";
+	let ca = document.cookie.split(';');
+	for (let i = 0; i < ca.length; i++) {
+		let c = ca[i];
+		while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+	}
+	return null;
 }
 
 let config = {
@@ -90,8 +90,8 @@ var cookieNotice = function(cfg) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    if (config.show === true && !getCookie("allow_cookies")) {
-	    let parent = document.querySelector(config.parent_selector);
+	if (config.show === true && !getCookie("allow_cookies")) {
+		let parent = document.querySelector(config.parent_selector);
 
 		let notice = parent.Add("div");
 		notice.id = "cookie_notice";
@@ -100,9 +100,9 @@ document.addEventListener("DOMContentLoaded", function() {
 		notice.style.position = "fixed";
 		notice.style.zIndex = 9999;
 		notice.style.bottom = "2em";
-    	notice.style.right = "2em";
-    	notice.style.alignItems = "center";
-    	notice.style.display = "flex";
+		notice.style.right = "2em";
+		notice.style.alignItems = "center";
+		notice.style.display = "flex";
 
 		let we_use_cookies = notice.Add("p");
 		we_use_cookies.style.color = config.colors.text_we_use_cookies;
@@ -123,19 +123,19 @@ document.addEventListener("DOMContentLoaded", function() {
 		accept_button.style.padding = "0.7em 1.4em";
 		accept_button.style.margin = "0";
 		accept_button.style.marginLeft = "auto";
-	    accept_button.style.marginRight = "0";
+		accept_button.style.marginRight = "0";
 		accept_button.style.color = config.colors.text_accept;
 		accept_button.style.backgroundColor = config.colors.accept_button;
 		accept_button.style.fontSize = "1.4em";
-	    accept_button.style.fontWeight = "300";
-	    accept_button.style.transition = "0.3s";
-	    accept_button.style.cursor = "pointer";
-	    accept_button.innerHTML = config.text.accept;
-	    accept_button.onmouseover = function() {
-		    this.style.backgroundColor = config.colors.accept_button_hovered;
+		accept_button.style.fontWeight = "300";
+		accept_button.style.transition = "0.3s";
+		accept_button.style.cursor = "pointer";
+		accept_button.innerHTML = config.text.accept;
+		accept_button.onmouseover = function() {
+			this.style.backgroundColor = config.colors.accept_button_hovered;
 		}
 		accept_button.onmouseleave = function() {
-		    this.style.backgroundColor = config.colors.accept_button;
+			this.style.backgroundColor = config.colors.accept_button;
 		}
 		accept_button.onclick = function() {
 			setCookie("allow_cookies", "1");
