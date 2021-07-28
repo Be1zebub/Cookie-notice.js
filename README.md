@@ -1,6 +1,7 @@
 # Cookie-notice.js
 
-A simple way to certain cookie consent requirements under the EU GDPR cookie law and CCPA regulations.
+A simple way to certain cookie consent requirements under the EU GDPR cookie law and CCPA regulations.  
+
 ![Banner](cookie_notice.png)  
   
 Just put this code in your index.html
