@@ -73,16 +73,20 @@ let config = {
 };
 
 var cookieNotice = function(cfg) {
-	cfg.forEach(function(key, val) {
-		if (isObject(val)) {
-			val.forEach(function(key2, val2) {
-				config[key][key2] = val2;
-			});
-		} else {
-			config[key] = val;
-		}
-	});
-	config.show = true;
+	if (!cfg) {
+		config.show = true;
+	} else {
+		cfg.forEach(function(key, val) {
+			if (isObject(val)) {
+				val.forEach(function(key2, val2) {
+					config[key][key2] = val2;
+				});
+			} else {
+				config[key] = val;
+			}
+		});
+		config.show = true;
+	}
 }
 
 document.addEventListener("DOMContentLoaded", function() {
