@@ -7,7 +7,7 @@ Just put this code in your index.html
 ```
 <script type="text/javascript" src="cookie_notice.js"></script>
 <script type="text/javascript">
-		cookieNotice();
+	cookieNotice();
 </script>
 ```
   
