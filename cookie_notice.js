@@ -89,57 +89,61 @@ var cookieNotice = function(cfg) {
 	}
 }
 
+var cookieNoticeCreate = function(cfg) {
+	let parent = document.querySelector(cfg.parent_selector);
+
+	let notice = parent.Add("div");
+	notice.id = "cookie_notice";
+	notice.style.backgroundColor = cfg.colors.background;
+	notice.style.padding = "1em 2em";
+	notice.style.position = "fixed";
+	notice.style.zIndex = 9999;
+	notice.style.bottom = "2em";
+	notice.style.right = "2em";
+	notice.style.alignItems = "center";
+	notice.style.display = "flex";
+
+	let we_use_cookies = notice.Add("p");
+	we_use_cookies.style.color = cfg.colors.text_we_use_cookies;
+	we_use_cookies.style.marginRight = "1em";
+	we_use_cookies.style.fontSize = "1em";
+	we_use_cookies.innerHTML = cfg.text.we_use_cookies;
+
+	we_use_cookies.Add("br");
+
+	let more_details = we_use_cookies.Add("a");
+	more_details.style.color = cfg.colors.text_more_details;
+	more_details.style.fontSize = "1.4em";
+	more_details.innerHTML = cfg.text.more_details;
+	more_details.href = cfg.more_details_url;
+
+	let accept_button = notice.Add("p");
+	accept_button.id = "test";
+	accept_button.style.padding = "0.7em 1.4em";
+	accept_button.style.margin = "0";
+	accept_button.style.marginLeft = "auto";
+	accept_button.style.marginRight = "0";
+	accept_button.style.color = cfg.colors.text_accept;
+	accept_button.style.backgroundColor = cfg.colors.accept_button;
+	accept_button.style.fontSize = "1.4em";
+	accept_button.style.fontWeight = "300";
+	accept_button.style.transition = "0.3s";
+	accept_button.style.cursor = "pointer";
+	accept_button.innerHTML = cfg.text.accept;
+	accept_button.onmouseover = function() {
+		this.style.backgroundColor = cfg.colors.accept_button_hovered;
+	}
+	accept_button.onmouseleave = function() {
+		this.style.backgroundColor = cfg.colors.accept_button;
+	}
+	accept_button.onclick = function() {
+		setCookie("allow_cookies", "1");
+		notice.remove();
+	}
+}
+
 document.addEventListener("DOMContentLoaded", function() {
 	if (config.show === true && !getCookie("allow_cookies")) {
-		let parent = document.querySelector(config.parent_selector);
-
-		let notice = parent.Add("div");
-		notice.id = "cookie_notice";
-		notice.style.backgroundColor = config.colors.background;
-		notice.style.padding = "1em 2em";
-		notice.style.position = "fixed";
-		notice.style.zIndex = 9999;
-		notice.style.bottom = "2em";
-		notice.style.right = "2em";
-		notice.style.alignItems = "center";
-		notice.style.display = "flex";
-
-		let we_use_cookies = notice.Add("p");
-		we_use_cookies.style.color = config.colors.text_we_use_cookies;
-		we_use_cookies.style.marginRight = "1em";
-		we_use_cookies.style.fontSize = "1em";
-		we_use_cookies.innerHTML = config.text.we_use_cookies;
-
-		we_use_cookies.Add("br");
-
-		let more_details = we_use_cookies.Add("a");
-		more_details.style.color = config.colors.text_more_details;
-		more_details.style.fontSize = "1.4em";
-		more_details.innerHTML = config.text.more_details;
-		more_details.href = config.more_details_url;
-
-		let accept_button = notice.Add("p");
-		accept_button.id = "test";
-		accept_button.style.padding = "0.7em 1.4em";
-		accept_button.style.margin = "0";
-		accept_button.style.marginLeft = "auto";
-		accept_button.style.marginRight = "0";
-		accept_button.style.color = config.colors.text_accept;
-		accept_button.style.backgroundColor = config.colors.accept_button;
-		accept_button.style.fontSize = "1.4em";
-		accept_button.style.fontWeight = "300";
-		accept_button.style.transition = "0.3s";
-		accept_button.style.cursor = "pointer";
-		accept_button.innerHTML = config.text.accept;
-		accept_button.onmouseover = function() {
-			this.style.backgroundColor = config.colors.accept_button_hovered;
-		}
-		accept_button.onmouseleave = function() {
-			this.style.backgroundColor = config.colors.accept_button;
-		}
-		accept_button.onclick = function() {
-			setCookie("allow_cookies", "1");
-			notice.remove();
-		}
+		cookieNoticeCreate(config);
 	}
 });
